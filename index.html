@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Chairs — Campaign Performance Insights · June 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
+:root {
+  --green:#1a7a4a; --green-lt:#e8f5ed; --green-md:#2d9a60;
+  --dark:#0f0f0f; --mid:#444; --light:#888; --border:#e2e2e2;
+  --bg:#f8f8f6; --white:#fff;
+  --meta:#1877f2; --li:#0a66c2; --goog:#db4437;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--dark);font-size:14px;line-height:1.6;}
+
+.hdr{background:var(--dark);color:#fff;padding:44px 60px 36px;}
+.eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-md);font-weight:600;margin-bottom:14px;}
+.h-title{font-family:'DM Serif Display',Georgia,serif;font-size:46px;font-weight:400;line-height:1.1;margin-bottom:10px;}
+.h-sub{font-size:15px;color:#aaa;margin-bottom:20px;}
+.badges{display:flex;flex-wrap:wrap;gap:8px;}
+.badge{font-size:10px;padding:4px 10px;border-radius:20px;font-weight:600;border:1px solid;}
+.b-green{color:#6fcf97;border-color:#6fcf97;background:rgba(111,207,151,.1);}
+.b-meta{color:#79a9f5;border-color:#79a9f5;background:rgba(24,119,242,.12);}
+.b-li{color:#5ba4e8;border-color:#5ba4e8;background:rgba(10,102,194,.12);}
+.b-goog{color:#f08080;border-color:#f08080;background:rgba(219,68,55,.12);}
+
+.nav{display:flex;background:var(--dark);padding:0 60px;border-top:1px solid #1e1e1e;overflow-x:auto;}
+.nav a{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;padding:13px 18px;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;}
+.nav a.on{color:var(--green-md);border-bottom-color:var(--green-md);}
+
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.kpi{background:var(--white);padding:22px 20px;}
+.kpi-lbl{font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:7px;}
+.kpi-val{font-size:28px;font-weight:700;letter-spacing:-0.5px;line-height:1;margin-bottom:6px;}
+.kpi-sub{font-size:11px;color:var(--light);}
+.kpi-sub b{color:var(--mid);font-weight:500;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 44px 80px;}
+.sec{margin-top:56px;}
+.sec-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:8px;}
+.sec-title{font-family:'DM Serif Display',Georgia,serif;font-size:26px;font-weight:400;line-height:1.25;margin-bottom:22px;}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:26px 30px;}
+.card-title{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:12px;}
+
+.quote{border-left:3px solid var(--green);background:var(--green-lt);padding:18px 24px;border-radius:0 8px 8px 0;margin-top:20px;font-style:italic;font-size:14px;color:var(--dark);line-height:1.7;}
+
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:20px;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--light);font-weight:700;padding:13px 18px;background:#fafafa;border-bottom:1px solid var(--border);text-align:left;}
+thead th:not(:first-child){text-align:right;}
+tbody td{padding:12px 18px;font-size:13px;color:var(--mid);border-bottom:1px solid #f2f2f2;vertical-align:middle;}
+tbody td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#fafff8;}
+.tr-total td{font-weight:700!important;color:var(--dark)!important;background:#f7f9f7!important;border-top:1px solid var(--border)!important;border-bottom:none!important;}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;}
+.dot-meta{background:var(--meta);}.dot-li{background:var(--li);}.dot-goog{background:var(--goog);}
+.pill{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;margin-left:6px;}
+.pill-green{background:var(--green-lt);color:var(--green);}
+
+.m-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
+.m-mini{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
+.m-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:6px;}
+.m-val{font-size:22px;font-weight:700;letter-spacing:-0.5px;}
+.m-note{font-size:10px;color:var(--light);margin-top:3px;}
+
+.bar-head{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);font-weight:600;margin-bottom:14px;}
+.br{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bl{width:200px;font-size:12px;color:var(--mid);flex-shrink:0;text-align:right;}
+.bt{flex:1;background:#efefef;border-radius:4px;height:9px;overflow:hidden;}
+.bf{height:100%;border-radius:4px;}
+.bf-meta{background:var(--meta);}.bf-li{background:var(--li);}.bf-goog{background:var(--goog);}
+.bf-ca{background:var(--green);}.bf-wa{background:#52be80;}
+.bv{width:80px;font-size:12px;font-weight:600;color:var(--dark);}
+
+.ch-hdr{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.ch-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;}
+.ico-meta{background:var(--meta);}.ico-li{background:var(--li);}.ico-goog{background:var(--goog);}
+.ch-name{font-family:'DM Serif Display',Georgia,serif;font-size:23px;font-weight:400;}
+.ch-sub{font-size:12px;color:var(--light);margin-top:1px;}
+
+.pl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px;}
+.pl-card{background:#f9f9f7;border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
+.pl-name{font-size:12px;color:var(--dark);font-weight:500;}
+.pl-geo{font-size:10px;color:var(--light);margin-top:2px;}
+.pl-ctr{font-size:14px;font-weight:700;color:var(--green);}
+.pl-det{font-size:10px;color:var(--light);text-align:right;margin-top:2px;}
+
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+.geo-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.geo-st{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:16px;}
+.gsr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f2;font-size:12px;}
+.gsr:last-child{border-bottom:none;}
+.gsk{color:var(--light);}.gsv{font-weight:600;color:var(--dark);}
+
+.ins{list-style:none;margin-top:22px;}
+.ins li{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f2f2f2;font-size:13px;color:var(--mid);line-height:1.65;}
+.ins li:last-child{border-bottom:none;}
+.ins-ico{font-size:15px;flex-shrink:0;margin-top:1px;}
+
+/* NEXT STEPS — insight-first style */
+.rec-list{list-style:none;margin-top:22px;}
+.rec-item{padding:22px 0;border-bottom:1px solid var(--border);}
+.rec-item:last-child{border-bottom:none;}
+.rec-tag{font-size:9px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:6px;}
+.rec-title{font-size:16px;font-weight:600;color:var(--dark);margin-bottom:8px;line-height:1.3;}
+.rec-body{font-size:13px;color:var(--mid);line-height:1.7;max-width:760px;}
+
+hr.div{border:none;border-top:1px solid var(--border);margin:52px 0 0;}
+.footer{background:var(--dark);color:#555;padding:22px 60px;font-size:11px;display:flex;justify-content:space-between;margin-top:64px;}
+.footer b{color:#888;}
+
+@media(max-width:768px){
+  .hdr,.nav,.footer{padding-left:20px;padding-right:20px;}
+  .wrap{padding:0 20px 60px;}
+  .kpi-row{grid-template-columns:1fr 1fr;}
+  .m-row{grid-template-columns:1fr 1fr;}
+  .geo-grid,.pl-grid{grid-template-columns:1fr;}
+  .h-title{font-size:30px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="eyebrow">Campaign Performance Insights · Jun 2026</div>
+  <div class="h-title">Two Chairs — Therapist Recruitment</div>
+  <div class="h-sub">June 1 – June 25, 2026 &nbsp;·&nbsp; 25-day window &nbsp;·&nbsp; CA &amp; WA markets</div>
+  <div class="badges">
+    <span class="badge b-green">JOVEO × TWO CHAIRS</span>
+    <span class="badge b-goog">Google Search · AI Max · Performance Max</span>
+    <span class="badge b-meta">Meta Traffic Optimisation + A/B Test</span>
+    <span class="badge b-li">LinkedIn Sponsored Content</span>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="#summary" class="on">01 · Summary</a>
+  <a href="#google">02 · Google</a>
+  <a href="#meta">03 · Meta</a>
+  <a href="#linkedin">04 · LinkedIn</a>
+  <a href="#geo">05 · CA vs WA</a>
+  <a href="#recs">06 · Next Steps</a>
+</div>
+
+<div class="wrap">
+
+<!-- ══ 01 SUMMARY ══════════════════════════════════ -->
+<div class="sec" id="summary">
+  <div class="sec-lbl">01 · The Period in Brief</div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-lbl">Total Spend</div>
+      <div class="kpi-val">$5,009</div>
+      <div class="kpi-sub"><b>Meta 38%</b> · <b>LI 42%</b> · <b>Google 20%</b></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Impressions</div>
+      <div class="kpi-val">650.8K</div>
+      <div class="kpi-sub"><b>Meta 83%</b> · <b>LI 15%</b> · <b>Google 1%</b></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Clicks</div>
+      <div class="kpi-val">7,404</div>
+      <div class="kpi-sub">Blended CTR <b>1.14%</b></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">CA vs WA</div>
+      <div class="kpi-val">58 / 42</div>
+      <div class="kpi-sub">CA <b>4,262</b> clicks · WA <b>3,142</b></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Blended CPC</div>
+      <div class="kpi-val">$0.68</div>
+      <div class="kpi-sub">Meta $0.41 · LI $0.86 · Google $4.13</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <div class="card-title">Period Overview</div>
+    <p style="font-size:14px;color:var(--mid);line-height:1.75;">
+      June 1–25 is the first full reporting window with all three new formats live simultaneously: <strong style="color:var(--dark);">Google AI Max, Google Performance Max, and the Meta conversion-optimisation A/B test</strong>. The program delivered <strong style="color:var(--dark);">650.8K impressions and 7,404 clicks on $5,009</strong> across Google, Meta, and LinkedIn. California holds a 58% click-volume lead across all three channels. Meta generates the bulk of raw reach and clicks at the lowest CPC; LinkedIn delivers the highest CTR; Google's three-format mix covers search-intent candidates and is still in its algorithmic learning phase.
+    </p>
+  </div>
+
+  <div class="quote">"Meta drives reach, LinkedIn drives intent, and Google covers the search-qualified tail — all three demand mechanisms are now active. The next lever is creative refresh on California Meta and scaling Instagram Reels, which is outperforming every other placement in the program."</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Channel</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Read</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="dot dot-meta"></span><strong>Meta</strong></td>
+          <td>$1,922</td><td>542,590</td><td>4,738</td><td>0.87%</td><td>$0.41</td>
+          <td style="color:var(--light);font-size:12px;">Instagram Reels top placement · A/B test live</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-li"></span><strong>LinkedIn</strong></td>
+          <td>$2,088</td><td>98,656</td><td>2,424</td><td>2.46%</td><td>$0.86</td>
+          <td style="color:var(--light);font-size:12px;">Highest CTR · highest engagement channel</td>
+        </tr>
+        <tr>
+          <td><span class="dot dot-goog"></span><strong>Google</strong></td>
+          <td>$999</td><td>9,540</td><td>242</td><td>2.54%</td><td>$4.13</td>
+          <td style="color:var(--light);font-size:12px;">Search + PMax + AI Max · learning phase</td>
+        </tr>
+        <tr class="tr-total">
+          <td><strong>Total</strong></td>
+          <td><strong>$5,009</strong></td><td><strong>650,786</strong></td><td><strong>7,404</strong></td><td><strong>1.14%</strong></td><td><strong>$0.68</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;">
+    <div class="bar-head">Spend Share by Channel</div>
+    <div class="br"><div class="bl">LinkedIn &nbsp;<span style="color:var(--light);font-size:10px;">42%</span></div><div class="bt"><div class="bf bf-li" style="width:42%;"></div></div><div class="bv">$2,088</div></div>
+    <div class="br"><div class="bl">Meta &nbsp;<span style="color:var(--light);font-size:10px;">38%</span></div><div class="bt"><div class="bf bf-meta" style="width:38%;"></div></div><div class="bv">$1,922</div></div>
+    <div class="br"><div class="bl">Google &nbsp;<span style="color:var(--light);font-size:10px;">20%</span></div><div class="bt"><div class="bf bf-goog" style="width:20%;"></div></div><div class="bv">$999</div></div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══ 02 GOOGLE ════════════════════════════════════ -->
+<div class="sec" id="google">
+  <div class="sec-lbl">02 · Google</div>
+  <div class="ch-hdr">
+    <div class="ch-ico ico-goog">G</div>
+    <div>
+      <div class="ch-name">Google Ads</div>
+      <div class="ch-sub">Search · Performance Max · AI Max &nbsp;|&nbsp; Jun 1–25 · all formats active</div>
+    </div>
+  </div>
+
+  <div class="m-row">
+    <div class="m-mini"><div class="m-lbl">Spend</div><div class="m-val">$999</div><div class="m-note">20% of total program spend</div></div>
+    <div class="m-mini"><div class="m-lbl">Impressions</div><div class="m-val">9,540</div><div class="m-note">1.5% of total impressions</div></div>
+    <div class="m-mini"><div class="m-lbl">Clicks</div><div class="m-val">242</div><div class="m-note">CTR 2.54%</div></div>
+    <div class="m-mini"><div class="m-lbl">CPC</div><div class="m-val">$4.13</div><div class="m-note">Search-intent audience premium</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Format</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>CA Clicks</th><th>WA Clicks</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Search</strong></td>
+          <td>$748</td><td>1,857</td><td>106</td><td>5.71%</td><td>80</td><td>26</td>
+        </tr>
+        <tr>
+          <td><strong>Performance Max</strong> <span class="pill pill-green">New</span></td>
+          <td>$175</td><td>7,583</td><td>129</td><td>1.70%</td><td>94</td><td>35</td>
+        </tr>
+        <tr>
+          <td><strong>AI Max</strong> <span class="pill pill-green">New</span></td>
+          <td>$76</td><td>100</td><td>7</td><td>7.00%</td><td>4</td><td>3</td>
+        </tr>
+        <tr class="tr-total">
+          <td><strong>Total</strong></td>
+          <td><strong>$999</strong></td><td><strong>9,540</strong></td><td><strong>242</strong></td><td><strong>2.54%</strong></td><td><strong>178</strong></td><td><strong>64</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Market</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Spend Share</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>California</td><td>$554</td><td>7,377</td><td>178</td><td>2.41%</td><td>55%</td></tr>
+        <tr><td>Washington</td><td>$445</td><td>2,163</td><td>64</td><td>2.96%</td><td>45%</td></tr>
+        <tr class="tr-total"><td><strong>Total</strong></td><td><strong>$999</strong></td><td><strong>9,540</strong></td><td><strong>242</strong></td><td><strong>2.54%</strong></td><td><strong>100%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title">Audience Signals — Age &amp; Device</div>
+    <p style="font-size:13px;color:var(--mid);line-height:1.75;">
+      <strong style="color:var(--dark);">25–34</strong> is the top age band by Search spend in both markets. <strong style="color:var(--dark);">Mobile phones</strong> dominate across Search and AI Max; Performance Max extends reach across mobile, desktop, TV screens, and tablets.
+    </p>
+  </div>
+
+  <ul class="ins">
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Search carries 75% of Google spend and drives the highest CTR at 5.71%.</strong> The audience reaching Two Chairs through keyword search is highly self-qualified. Washington's overall Google CTR (2.96%) leads California (2.41%) — consistent with the broader pattern of stronger WA audience alignment across the program.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Performance Max is functioning as the reach engine.</strong> PMax generated 79% of all Google impressions at $175 — the cheapest cost-per-impression in the program. The CA/WA click split (94 vs 35) mirrors the broader program geo weighting.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">AI Max is showing early intent-level CTR at 7.00%.</strong> Across its first observed days the format is matching and exceeding Search on click-through rate. Volume is early-stage; the format is still building signal and performance trajectory is positive.</span>
+    </li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<!-- ══ 03 META ═══════════════════════════════════════ -->
+<div class="sec" id="meta">
+  <div class="sec-lbl">03 · Meta</div>
+  <div class="ch-hdr">
+    <div class="ch-ico ico-meta">f</div>
+    <div>
+      <div class="ch-name">Meta Ads</div>
+      <div class="ch-sub">Traffic Optimisation (primary) + A/B Test &nbsp;|&nbsp; CA &amp; WA</div>
+    </div>
+  </div>
+
+  <div class="m-row">
+    <div class="m-mini"><div class="m-lbl">Spend</div><div class="m-val">$1,922</div><div class="m-note">38% of total program spend</div></div>
+    <div class="m-mini"><div class="m-lbl">Impressions</div><div class="m-val">542,590</div><div class="m-note">83% of total impressions</div></div>
+    <div class="m-mini"><div class="m-lbl">Clicks</div><div class="m-val">4,738</div><div class="m-note">CTR 0.87%</div></div>
+    <div class="m-mini"><div class="m-lbl">CPC</div><div class="m-val">$0.41</div><div class="m-note">Most cost-efficient channel</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Market</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Impr Share</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>California</td><td>$954</td><td>344,625</td><td>2,597</td><td>0.75%</td><td>63.5%</td></tr>
+        <tr><td>Washington</td><td>$967</td><td>197,965</td><td>2,141</td><td>1.08%</td><td>36.5%</td></tr>
+        <tr class="tr-total"><td><strong>Total</strong></td><td><strong>$1,922</strong></td><td><strong>542,590</strong></td><td><strong>4,738</strong></td><td><strong>0.87%</strong></td><td><strong>100%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:24px;">
+    <div class="bar-head">Top Placements by CTR</div>
+    <div class="pl-grid">
+      <div class="pl-card">
+        <div><div class="pl-name">Instagram Reels</div><div class="pl-geo">California · $415</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">3.21%</div><div class="pl-det">30,031 impr · 964 clicks</div></div>
+      </div>
+      <div class="pl-card">
+        <div><div class="pl-name">Instagram Reels</div><div class="pl-geo">Washington · $423</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">2.52%</div><div class="pl-det">30,563 impr · 770 clicks</div></div>
+      </div>
+      <div class="pl-card">
+        <div><div class="pl-name">Facebook Reels</div><div class="pl-geo">California · $30</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">1.56%</div><div class="pl-det">2,372 impr · 37 clicks</div></div>
+      </div>
+      <div class="pl-card">
+        <div><div class="pl-name">Facebook Reels</div><div class="pl-geo">Washington · $72</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">1.10%</div><div class="pl-det">6,466 impr · 71 clicks</div></div>
+      </div>
+      <div class="pl-card">
+        <div><div class="pl-name">Native / Banner</div><div class="pl-geo">Washington · $303</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">0.84%</div><div class="pl-det">123,566 impr · 1,037 clicks</div></div>
+      </div>
+      <div class="pl-card">
+        <div><div class="pl-name">Ads on Facebook Reels</div><div class="pl-geo">Washington · $84</div></div>
+        <div style="text-align:right;"><div class="pl-ctr">0.68%</div><div class="pl-det">29,359 impr · 200 clicks</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;">
+    <div class="bar-head">Age — Click Distribution (combined markets)</div>
+    <div class="br"><div class="bl">18–24</div><div class="bt"><div class="bf bf-meta" style="width:24%;"></div></div><div class="bv">1,130 clicks</div></div>
+    <div class="br"><div class="bl">25–34</div><div class="bt"><div class="bf bf-meta" style="width:23%;"></div></div><div class="bv">1,082 clicks</div></div>
+    <div class="br"><div class="bl">35–44</div><div class="bt"><div class="bf bf-meta" style="width:16%;"></div></div><div class="bv">778 clicks</div></div>
+    <div class="br"><div class="bl">65+</div><div class="bt"><div class="bf bf-meta" style="width:16%;"></div></div><div class="bv">767 clicks</div></div>
+    <div class="br"><div class="bl">45–54</div><div class="bt"><div class="bf bf-meta" style="width:12%;"></div></div><div class="bv">554 clicks</div></div>
+    <div class="br"><div class="bl">55–64</div><div class="bt"><div class="bf bf-meta" style="width:9%;"></div></div><div class="bv">426 clicks</div></div>
+  </div>
+
+  <ul class="ins" style="margin-top:20px;">
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Instagram Reels is the standout placement on both CTR and efficiency.</strong> CA Reels (3.21%) and WA Reels (2.52%) are 3–7x more engaging than Native/Banner, which carries the bulk of impressions. Reels is clearly connecting with the audience in a way volume placements are not.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Washington CTR outperforms California on near-identical spend ($967 vs $954).</strong> WA delivers 1.08% CTR vs 0.75% for CA — a 44% gap consistent across placements. The creative is resonating more strongly with the WA audience.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">18–24 and 25–34 together account for 47% of Meta clicks.</strong> Both cohorts align well with the early-career licensed clinician profile Two Chairs is targeting. The 65+ cohort driving 16% of clicks warrants a downstream quality check against applicant data.</span>
+    </li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<!-- ══ 04 LINKEDIN ═══════════════════════════════════ -->
+<div class="sec" id="linkedin">
+  <div class="sec-lbl">04 · LinkedIn</div>
+  <div class="ch-hdr">
+    <div class="ch-ico ico-li">in</div>
+    <div>
+      <div class="ch-name">LinkedIn Sponsored Content</div>
+      <div class="ch-sub">Traffic Optimisation · CA &amp; WA campaigns · Jun 1–25</div>
+    </div>
+  </div>
+
+  <div class="m-row">
+    <div class="m-mini"><div class="m-lbl">Spend</div><div class="m-val">$2,088</div><div class="m-note">42% of total program spend</div></div>
+    <div class="m-mini"><div class="m-lbl">Impressions</div><div class="m-val">98,656</div><div class="m-note">15.2% of total impressions</div></div>
+    <div class="m-mini"><div class="m-lbl">Clicks</div><div class="m-val">2,424</div><div class="m-note">Highest CTR channel at 2.46%</div></div>
+    <div class="m-mini"><div class="m-lbl">CPC</div><div class="m-val">$0.86</div><div class="m-note">Strong for professional intent level</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Market</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>California</td><td>$1,048</td><td>64,194</td><td>1,487</td><td>2.32%</td>
+        </tr>
+        <tr><td>Washington</td><td>$1,040</td><td>34,462</td><td>937</td><td>2.72%</td></tr>
+        <tr class="tr-total"><td><strong>Total</strong></td><td><strong>$2,088</strong></td><td><strong>98,656</strong></td><td><strong>2,424</strong></td><td><strong>2.46%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+    <div class="tbl-wrap" style="margin-top:0;">
+      <table>
+        <thead><tr><th>Top Job Title Targets</th><th>Impr.</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td>Therapist</td><td>3,702</td><td>115</td></tr>
+          <tr><td>Mental Health Therapist</td><td>2,404</td><td>115</td></tr>
+          <tr><td>Physical Therapist</td><td>2,222</td><td>80</td></tr>
+          <tr><td>Speech Language Pathologist</td><td>1,787</td><td>72</td></tr>
+          <tr><td>Occupational Therapist</td><td>2,349</td><td>61</td></tr>
+          <tr><td>Psychotherapist</td><td>2,096</td><td>58</td></tr>
+          <tr><td>Mental Health Specialist</td><td>2,913</td><td>50</td></tr>
+          <tr><td>LMHC</td><td>2,253</td><td>33</td></tr>
+          <tr><td>LMFT</td><td>1,022</td><td>29</td></tr>
+          <tr><td>Psychologist</td><td>1,141</td><td>32</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tbl-wrap" style="margin-top:0;">
+      <table>
+        <thead><tr><th>Seniority Level</th><th>Impressions</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Entry</strong></td><td>39,179</td><td>1,014</td></tr>
+          <tr><td>Senior</td><td>23,174</td><td>611</td></tr>
+          <tr><td>Owner</td><td>4,763</td><td>87</td></tr>
+          <tr><td>Manager</td><td>1,869</td><td>47</td></tr>
+          <tr><td>Director</td><td>1,639</td><td>42</td></tr>
+          <tr><td>Training</td><td>1,762</td><td>31</td></tr>
+          <tr><td>CXO</td><td>587</td><td>9</td></tr>
+          <tr><td>VP</td><td>335</td><td>7</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ul class="ins">
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Highest CTR channel in the program at 2.46%.</strong> LinkedIn outperforms both Meta (0.87%) and Google (2.54% blended) on click-through rate, confirming professional targeting delivers the most engaged traffic. Washington leads California on CTR (2.72% vs 2.32%) — a consistent pattern across both LinkedIn and Meta.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">"Therapist" and "Mental Health Therapist" are co-equal top performers at 115 clicks each.</strong> Physical Therapist, SLP, and OT are showing strong adjacent reach — these audiences may respond better to messaging that speaks to their specific professional context rather than a generic therapist-recruitment angle.</span>
+    </li>
+    <li>
+      <span class="ins-ico">✦</span>
+      <span><strong style="color:var(--dark);">Entry-level seniority dominates at 42% of impressions and clicks.</strong> Entry + Senior together account for 67% of seniority-segmented engagement — well aligned with Two Chairs' target profile of licensed or near-licensed clinicians.</span>
+    </li>
+
+  </ul>
+</div>
+
+<hr class="div">
+
+<!-- ══ 05 CA VS WA ════════════════════════════════════ -->
+<div class="sec" id="geo">
+  <div class="sec-lbl">05 · CA vs WA</div>
+  <div class="sec-title">Market Performance Comparison</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Market</th><th>Total Spend</th><th>Spend Share</th><th>Total Clicks</th><th>Click Share</th><th>Meta CTR</th><th>LI CTR</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>California</strong></td><td>$2,557</td><td>51%</td><td>4,262</td><td>58%</td><td>0.75%</td><td>2.32%</td></tr>
+        <tr><td><strong>Washington</strong></td><td>$2,452</td><td>49%</td><td>3,142</td><td>42%</td><td>1.08%</td><td>2.72%</td></tr>
+        <tr class="tr-total"><td><strong>Total</strong></td><td><strong>$5,009</strong></td><td><strong>100%</strong></td><td><strong>7,404</strong></td><td><strong>100%</strong></td><td><strong>0.87%</strong></td><td><strong>2.46%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="geo-grid">
+    <div class="geo-card">
+      <div class="geo-st" style="color:var(--green);">California</div>
+      <div class="gsr"><div class="gsk">Total Spend</div><div class="gsv">$2,557 (51%)</div></div>
+      <div class="gsr"><div class="gsk">Total Clicks</div><div class="gsv">4,262 (58%)</div></div>
+      <div class="gsr"><div class="gsk">Google Spend · Clicks</div><div class="gsv">$554 · 178</div></div>
+      <div class="gsr"><div class="gsk">Meta Spend · Clicks · CTR</div><div class="gsv">$954 · 2,597 · 0.75%</div></div>
+      <div class="gsr"><div class="gsk">LinkedIn Spend · Clicks · CTR</div><div class="gsv">$1,048 · 1,487 · 2.32%</div></div>
+    </div>
+    <div class="geo-card">
+      <div class="geo-st" style="color:#2980b9;">Washington</div>
+      <div class="gsr"><div class="gsk">Total Spend</div><div class="gsv">$2,452 (49%)</div></div>
+      <div class="gsr"><div class="gsk">Total Clicks</div><div class="gsv">3,142 (42%)</div></div>
+      <div class="gsr"><div class="gsk">Google Spend · Clicks</div><div class="gsv">$445 · 64</div></div>
+      <div class="gsr"><div class="gsk">Meta Spend · Clicks · CTR</div><div class="gsv">$967 · 2,141 · 1.08%</div></div>
+      <div class="gsr"><div class="gsk">LinkedIn Spend · Clicks · CTR</div><div class="gsv">$1,040 · 937 · 2.72%</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:26px;">
+    <div class="bar-head">Clicks by Market and Channel</div>
+    <div class="br"><div class="bl">CA — Meta</div><div class="bt"><div class="bf bf-meta" style="width:55%;"></div></div><div class="bv">2,597</div></div>
+    <div class="br"><div class="bl">WA — Meta</div><div class="bt"><div class="bf bf-meta" style="width:45%;"></div></div><div class="bv">2,141</div></div>
+    <div class="br"><div class="bl">CA — LinkedIn</div><div class="bt"><div class="bf bf-li" style="width:31%;"></div></div><div class="bv">1,487</div></div>
+    <div class="br"><div class="bl">WA — LinkedIn</div><div class="bt"><div class="bf bf-li" style="width:20%;"></div></div><div class="bv">937</div></div>
+    <div class="br"><div class="bl">CA — Google</div><div class="bt"><div class="bf bf-goog" style="width:4%;"></div></div><div class="bv">178</div></div>
+    <div class="br"><div class="bl">WA — Google</div><div class="bt"><div class="bf bf-goog" style="width:1%;"></div></div><div class="bv">64</div></div>
+  </div>
+
+  <div class="card" style="margin-top:22px;">
+    <div class="card-title">Market Read</div>
+    <p style="font-size:13px;color:var(--mid);line-height:1.75;">
+      <strong style="color:var(--dark);">California leads on click volume</strong> (58%) driven by a larger Meta impression base and higher Google allocation. However, <strong style="color:var(--dark);">Washington consistently delivers stronger CTR on both LinkedIn (2.72% vs 2.32%) and Meta (1.08% vs 0.75%)</strong> on near-identical spend ($2,452 vs $2,557). The efficiency gap is consistent across both channels — the WA audience is better aligned with current creative, and that signal is worth acting on before the next cycle.
+    </p>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══ 06 NEXT STEPS ══════════════════════════════════ -->
+<div class="sec" id="recs">
+  <div class="sec-lbl">06 · Next Steps</div>
+  <div class="sec-title">What the data is telling us</div>
+
+  <ul class="rec-list">
+
+    <li class="rec-item">
+      <div class="rec-tag">01 · Meta</div>
+      <div class="rec-title">Instagram Reels is the engagement leader</div>
+      <div class="rec-body">Both markets are showing Reels as the top placement by CTR — CA at 3.21%, WA at 2.52%. The format is clearly connecting with the audience in a way the volume placements are not. The next cycle should lean into what's working here from a creative and placement standpoint.</div>
+    </li>
+
+
+
+    <li class="rec-item">
+      <div class="rec-tag">02 · LinkedIn</div>
+      <div class="rec-title">Adjacent clinical titles are showing real engagement</div>
+      <div class="rec-body">Physical Therapist, SLP, and OT are generating meaningful impressions and clicks alongside the primary Therapist titles. These audiences may respond better to messaging that speaks to their specific professional context rather than a generic therapist-recruitment angle.</div>
+    </li>
+
+    <li class="rec-item">
+      <div class="rec-tag">03 · LinkedIn</div>
+      <div class="rec-title">Washington CTR leads California</div>
+      <div class="rec-body">WA is delivering 2.72% CTR vs CA's 2.32%. The pattern mirrors what's happening on Meta — the WA audience is better aligned with current creative. Worth noting as a consistent signal across both channels.</div>
+    </li>
+
+    <li class="rec-item">
+      <div class="rec-tag">04 · Google</div>
+      <div class="rec-title">Search is punching above its weight</div>
+      <div class="rec-body">At 5.71% CTR, Search is the highest-performing format by engagement quality. The audience reaching Two Chairs through keyword search is highly self-qualified. This is worth keeping in view as the program matures and more signal accumulates across PMax and AI Max.</div>
+    </li>
+
+  </ul>
+</div>
+
+</div><!-- /wrap -->
+
+<div class="footer">
+  <div><b>Two Chairs — Therapist Recruitment</b> &nbsp;·&nbsp; June 1–25, 2026 &nbsp;·&nbsp; 25-day window &nbsp;·&nbsp; CA &amp; WA markets</div>
+  <div>Prepared by <b>Joveo</b> &nbsp;·&nbsp; Google · Meta · LinkedIn</div>
+</div>
+
+</body>
+</html>
